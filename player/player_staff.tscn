@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfhr6q7yvly0r"]
+
+[ext_resource type="Texture2D" uid="uid://dhy2fi216q037" path="res://player/staff.png" id="1_fl3vk"]
+[ext_resource type="Script" path="res://player/player_staff.gd" id="1_nvy4o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kour2"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e263m"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eagt5"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wen2a"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnaie"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6glq"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rheab"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unkxv"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6csi"]
+atlas = ExtResource("1_fl3vk")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80hr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kour2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e263m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eagt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wen2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnaie")
+}],
+"loop": false,
+"name": &"atack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6glq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rheab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unkxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6csi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[node name="PlayerStaff" type="Node2D"]
+script = ExtResource("1_nvy4o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -2)
+sprite_frames = SubResource("SpriteFrames_80hr5")
+animation = &"idle"
+autoplay = "idle"

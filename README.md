@@ -1,2 +1,2 @@
-# game-hallowen-last-stand
-hallowen last stand
+# game-halloween-last-stand
+halloween last stand

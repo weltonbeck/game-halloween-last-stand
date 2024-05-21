@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://vbbsw7gg4v7t"]
+
+[ext_resource type="Texture2D" uid="uid://d1olnk3kqcxx" path="res://misc/trees/dry_tree.png" id="1_ylaco"]
+[ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top.tscn" id="2_8x44k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxw3p"]
+radius = 4.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tnaba"]
+radius = 13.0
+height = 44.0
+
+[node name="DryTree" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -22)
+texture = ExtResource("1_ylaco")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bxw3p")
+
+[node name="TransparencyWhenOnTop" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_8x44k")]
+collision_mask = 1
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransparencyWhenOnTop"]
+position = Vector2(0, -22)
+shape = SubResource("CapsuleShape2D_tnaba")
+debug_color = Color(0.780009, 0.679745, 0.34949, 0.42)

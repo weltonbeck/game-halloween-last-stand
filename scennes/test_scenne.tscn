@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpfssddtknse3"]
+
+[ext_resource type="PackedScene" uid="uid://c7gsbegdxii8h" path="res://player/player.tscn" id="1_neejf"]
+[ext_resource type="PackedScene" uid="uid://ce34kwoputs6r" path="res://misc/trees/pine.tscn" id="2_8sx7f"]
+[ext_resource type="PackedScene" uid="uid://vbbsw7gg4v7t" path="res://misc/trees/dry_tree.tscn" id="3_yggbs"]
+
+[node name="TestScenne" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_neejf")]
+position = Vector2(120, 102)
+
+[node name="Pine" parent="." instance=ExtResource("2_8sx7f")]
+position = Vector2(159, 140)
+
+[node name="Pine2" parent="." instance=ExtResource("2_8sx7f")]
+position = Vector2(122, 183)
+
+[node name="Pine3" parent="." instance=ExtResource("2_8sx7f")]
+position = Vector2(61, 190)
+
+[node name="DryTree" parent="." instance=ExtResource("3_yggbs")]
+position = Vector2(208, 184)
+
+[node name="DryTree2" parent="." instance=ExtResource("3_yggbs")]
+position = Vector2(44, 122)
