@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbmy4og7ju16i"]
+
+[ext_resource type="Script" path="res://components/effects/destroy_when_die_component.gd" id="1_o3t56"]
+
+[node name="DestroyWhenDieComponent" type="Node2D"]
+script = ExtResource("1_o3t56")

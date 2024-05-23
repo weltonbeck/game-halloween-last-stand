@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ce34kwoputs6r"]
 
 [ext_resource type="Texture2D" uid="uid://d1tb3u6vbqt7b" path="res://misc/trees/pine.png" id="1_5lroa"]
-[ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top.tscn" id="2_smnrl"]
+[ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top_component.tscn" id="2_smnrl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxw3p"]
 radius = 4.0

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj06d8x662u44"]
+
+[ext_resource type="Script" path="res://components/inputs/follow_player_input_component.gd" id="1_sct0a"]
+
+[node name="FollowPlayerInputComponent" type="Node2D"]
+position = Vector2(0, -16)
+script = ExtResource("1_sct0a")

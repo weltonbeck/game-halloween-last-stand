@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddwry44o1c2a2"]
+
+[ext_resource type="Script" path="res://components/effects/show_damage_digit_when_get_damage_component.gd" id="1_vlh72"]
+
+[node name="ShowDamageDigitWhenGetDamageComponent" type="Node2D"]
+script = ExtResource("1_vlh72")

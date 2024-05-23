@@ -15,11 +15,15 @@ run/main_scene="res://scennes/test_scenne.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerManager="*res://singletons/player_manager.gd"
+
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=270
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -66,6 +70,9 @@ ui_attack={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
+2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Bullet"
+2d_physics/layer_5="Collectables"
 
 [rendering]
 

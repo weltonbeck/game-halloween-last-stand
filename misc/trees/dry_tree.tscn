@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vbbsw7gg4v7t"]
 
 [ext_resource type="Texture2D" uid="uid://d1olnk3kqcxx" path="res://misc/trees/dry_tree.png" id="1_ylaco"]
-[ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top.tscn" id="2_8x44k"]
+[ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top_component.tscn" id="2_8x44k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxw3p"]
 radius = 4.0

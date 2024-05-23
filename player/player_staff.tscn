@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfhr6q7yvly0r"]
+[gd_scene load_steps=10 format=3 uid="uid://cfhr6q7yvly0r"]
 
 [ext_resource type="Texture2D" uid="uid://dhy2fi216q037" path="res://player/staff.png" id="1_fl3vk"]
 [ext_resource type="Script" path="res://player/player_staff.gd" id="1_nvy4o"]
@@ -27,18 +27,6 @@ region = Rect2(0, 24, 24, 24)
 atlas = ExtResource("1_fl3vk")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rheab"]
-atlas = ExtResource("1_fl3vk")
-region = Rect2(24, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_unkxv"]
-atlas = ExtResource("1_fl3vk")
-region = Rect2(48, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s6csi"]
-atlas = ExtResource("1_fl3vk")
-region = Rect2(72, 0, 24, 24)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_80hr5"]
 animations = [{
 "frames": [{
@@ -64,15 +52,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k6glq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rheab")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_unkxv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s6csi")
 }],
 "loop": true,
 "name": &"idle",
@@ -83,7 +62,6 @@ animations = [{
 script = ExtResource("1_nvy4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -2)
 sprite_frames = SubResource("SpriteFrames_80hr5")
 animation = &"idle"
 autoplay = "idle"

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyvi2bgeqosjm"]
+[gd_scene load_steps=5 format=3 uid="uid://dyvi2bgeqosjm"]
 
 [ext_resource type="Texture2D" uid="uid://bvvqem1ihqvdh" path="res://misc/bullets/bullet.png" id="1_maukj"]
 [ext_resource type="Script" path="res://misc/bullets/bullet.gd" id="1_o6uj1"]
+[ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/damage_box_component.tscn" id="3_gwnfs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbc2e"]
+radius = 5.0
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_o6uj1")
@@ -11,5 +15,17 @@ position = Vector2(0, -2)
 texture = ExtResource("1_maukj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.7)
+
+[node name="DamageBoxComponent" parent="." instance=ExtResource("3_gwnfs")]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_dbc2e")
+debug_color = Color(0.905882, 0.207843, 0.227451, 0.419608)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="applied_damage" from="DamageBoxComponent" to="." method="_on_damage_box_component_applied_damage"]

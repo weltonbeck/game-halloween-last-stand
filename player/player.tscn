@@ -1,14 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7gsbegdxii8h"]
+[gd_scene load_steps=26 format=3 uid="uid://c7gsbegdxii8h"]
 
 [ext_resource type="PackedScene" uid="uid://cfhr6q7yvly0r" path="res://player/player_staff.tscn" id="1_aho7j"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_cuhy1"]
 [ext_resource type="Texture2D" uid="uid://bxgbqgyxbn3aa" path="res://player/player-idle.png" id="1_s6cls"]
 [ext_resource type="PackedScene" uid="uid://cofgm0wdeiy7f" path="res://components/health_component.tscn" id="2_xpi4e"]
 [ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/hitbox_component.tscn" id="3_v7n6x"]
 [ext_resource type="PackedScene" uid="uid://bamq0fme31vqo" path="res://components/movements/movement_component.tscn" id="4_tilyf"]
 [ext_resource type="Script" path="res://components/inputs/player_input_component.gd" id="5_rt4w6"]
-[ext_resource type="PackedScene" uid="uid://dg8iyvp133ss3" path="res://components/movements/rotate_target_and_follow_mouse.tscn" id="7_0jsl7"]
 [ext_resource type="PackedScene" uid="uid://dyvi2bgeqosjm" path="res://misc/bullets/bullet.tscn" id="7_3bfyn"]
-[ext_resource type="PackedScene" uid="uid://ler4fjt2kf6k" path="res://components/attack_shooting.tscn" id="7_li7mo"]
+[ext_resource type="PackedScene" uid="uid://ler4fjt2kf6k" path="res://components/attack_shooting_component.tscn" id="7_tcyue"]
+[ext_resource type="PackedScene" uid="uid://dg8iyvp133ss3" path="res://components/movements/rotate_target_and_follow_mouse_component.tscn" id="10_1e23t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4qlh"]
 atlas = ExtResource("1_s6cls")
@@ -123,6 +124,7 @@ y_sort_enabled = true
 position = Vector2(0, -17)
 collision_mask = 2
 motion_mode = 1
+script = ExtResource("1_cuhy1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.5, 0)
@@ -153,7 +155,7 @@ input = NodePath("../PlayerInputComponent")
 script = ExtResource("5_rt4w6")
 deadzone = null
 
-[node name="AttackShooting" parent="." node_paths=PackedStringArray("marker", "input") instance=ExtResource("7_li7mo")]
+[node name="AttackShootingComponent" parent="." node_paths=PackedStringArray("marker", "input") instance=ExtResource("7_tcyue")]
 marker = NodePath("../PlayerStaff/Marker2D")
 input = NodePath("../PlayerInputComponent")
 bullet = ExtResource("7_3bfyn")
@@ -162,9 +164,10 @@ bullet = ExtResource("7_3bfyn")
 position = Vector2(21, 5)
 player = NodePath("..")
 
-[node name="RotateTargetAndFollowMouse" parent="PlayerStaff" node_paths=PackedStringArray("target", "rotate_center_target") instance=ExtResource("7_0jsl7")]
+[node name="RotateTargetAndFollowMouseComponent3" parent="PlayerStaff" node_paths=PackedStringArray("target", "rotate_center_target") instance=ExtResource("10_1e23t")]
+radius = 18.0
 target = NodePath("..")
 rotate_center_target = NodePath("../..")
 
 [node name="Marker2D" type="Marker2D" parent="PlayerStaff"]
-position = Vector2(1, -11)
+position = Vector2(0, -12)
