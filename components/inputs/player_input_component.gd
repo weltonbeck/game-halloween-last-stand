@@ -12,3 +12,4 @@ func handleMoveInputs(_delta: float) -> void:
 		input_vector.y = 0.0
 	
 	attack_input = Input.is_action_just_pressed("ui_attack")
+	attack_input_pressed = Input.is_action_pressed("ui_attack")

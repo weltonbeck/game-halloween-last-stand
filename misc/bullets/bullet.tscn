@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bvvqem1ihqvdh" path="res://misc/bullets/bullet.png" id="1_maukj"]
 [ext_resource type="Script" path="res://misc/bullets/bullet.gd" id="1_o6uj1"]
-[ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/damage_box_component.tscn" id="3_gwnfs"]
+[ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="3_gwnfs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dbc2e"]
 radius = 5.0
@@ -19,8 +19,9 @@ position = Vector2(0, -2)
 scale = Vector2(0.5, 0.7)
 
 [node name="DamageBoxComponent" parent="." instance=ExtResource("3_gwnfs")]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 4
+damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
 position = Vector2(0, -1)

@@ -2,6 +2,8 @@ class_name BlinkWhenGetDamageComponent
 extends Node2D
 
 @export var time:float = 0.2
+
+@export_category("Nodes")
 @export var health_component:HealthComponent
 @export var target:Node2D
 

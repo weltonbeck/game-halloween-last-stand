@@ -4,7 +4,7 @@ extends Area2D
 
 @export var health_component:HealthComponent
 
-func set_damage(amount:float) -> void:
+func set_damage(amount:int) -> void:
 	if (health_component):
 		health_component.damage(amount)
 

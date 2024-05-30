@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://tseuugmpt5ea"]
+
+[ext_resource type="Texture2D" uid="uid://rhyc6n4gw2i6" path="res://enemies/pumpkin-idle.png" id="1_yyda7"]
+[ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_mg4nq"]
+[ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="3_80mji"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="4_br10q"]
+[ext_resource type="Script" path="res://components/detections/hitbox_component.gd" id="5_l1nly"]
+[ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="6_vbwov"]
+[ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="7_6t6iv"]
+[ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="8_fwsnv"]
+[ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="9_hh3dl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k4ia"]
+atlas = ExtResource("1_yyda7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vprws"]
+atlas = ExtResource("1_yyda7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui1av"]
+atlas = ExtResource("1_yyda7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e32gl"]
+atlas = ExtResource("1_yyda7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhy6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k4ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vprws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui1av")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e32gl")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb5aj"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im5y2"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mux7y"]
+radius = 9.0
+
+[node name="Pumpkin" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, 0)
+sprite_frames = SubResource("SpriteFrames_dhy6l")
+animation = &"front"
+autoplay = "front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pb5aj")
+
+[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("target", "input")]
+position = Vector2(0, -1)
+script = ExtResource("2_mg4nq")
+speed = 30.0
+target = NodePath("..")
+input = NodePath("../FollowPlayerInputComponent")
+
+[node name="FollowPlayerInputComponent" parent="." instance=ExtResource("3_80mji")]
+position = Vector2(0, -1)
+
+[node name="HealthComponent" type="Node2D" parent="."]
+position = Vector2(0, -1)
+script = ExtResource("4_br10q")
+max_health = 15
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("5_l1nly")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_im5y2")
+debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
+
+[node name="DestroyWhenDieComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("6_vbwov")]
+position = Vector2(0, -1)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="ShowDamageDigitWhenGetDamageComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("7_6t6iv")]
+position = Vector2(0, -8)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="BlinkWhenGetDamageComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("8_fwsnv")]
+position = Vector2(0, -1)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="DamageBoxComponent" parent="." instance=ExtResource("9_hh3dl")]
+position = Vector2(0, -1)
+collision_layer = 0
+damage = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_mux7y")
+debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
