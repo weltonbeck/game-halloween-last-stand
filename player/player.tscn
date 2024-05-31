@@ -1,16 +1,17 @@
-[gd_scene load_steps=33 format=3 uid="uid://c7gsbegdxii8h"]
+[gd_scene load_steps=35 format=3 uid="uid://c7gsbegdxii8h"]
 
 [ext_resource type="PackedScene" uid="uid://cfhr6q7yvly0r" path="res://player/player_staff.tscn" id="1_aho7j"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_cuhy1"]
 [ext_resource type="PackedScene" uid="uid://cofgm0wdeiy7f" path="res://components/health_component.tscn" id="2_xpi4e"]
 [ext_resource type="Texture2D" uid="uid://btdq2i4vimy4p" path="res://player/player.png" id="2_yali8"]
-[ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hitbox_component.tscn" id="3_v7n6x"]
+[ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hit_box_component.tscn" id="3_v7n6x"]
 [ext_resource type="PackedScene" uid="uid://bamq0fme31vqo" path="res://components/movements/movement_component.tscn" id="4_tilyf"]
 [ext_resource type="Script" path="res://components/inputs/player_input_component.gd" id="5_rt4w6"]
 [ext_resource type="PackedScene" uid="uid://dyvi2bgeqosjm" path="res://misc/bullets/bullet.tscn" id="7_3bfyn"]
 [ext_resource type="PackedScene" uid="uid://ler4fjt2kf6k" path="res://components/attack_shooting_component.tscn" id="7_tcyue"]
 [ext_resource type="Script" path="res://components/effects/blink_when_get_damage_component.gd" id="9_0baky"]
 [ext_resource type="PackedScene" uid="uid://dg8iyvp133ss3" path="res://components/movements/rotate_target_and_follow_mouse_component.tscn" id="10_1e23t"]
+[ext_resource type="PackedScene" uid="uid://3dx5yvw1dnij" path="res://components/detections/collectible_aura_box_component.tscn" id="12_i5hni"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iack1"]
 radius = 6.0
@@ -204,6 +205,9 @@ states/Start/position = Vector2(177.333, 90.4187)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_b8xqo")
 states/Walk/position = Vector2(487.111, 99.5182)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_24rgh"]
+radius = 40.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "input", "animation_tree")]
 y_sort_enabled = true
 position = Vector2(0, -17)
@@ -249,9 +253,8 @@ position = Vector2(0, 3)
 script = ExtResource("5_rt4w6")
 deadzone = null
 
-[node name="AttackShootingComponent" parent="." node_paths=PackedStringArray("marker", "input") instance=ExtResource("7_tcyue")]
+[node name="AttackShootingComponent" parent="." node_paths=PackedStringArray("input") instance=ExtResource("7_tcyue")]
 position = Vector2(0, 3)
-marker = NodePath("../PlayerStaff/Marker2D")
 input = NodePath("../PlayerInputComponent")
 bullet = ExtResource("7_3bfyn")
 
@@ -286,3 +289,12 @@ parameters/Walk/blend_position = Vector2(0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_qkgk8")
 }
+
+[node name="CollectibleAuraBoxComponent" parent="." instance=ExtResource("12_i5hni")]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleAuraBoxComponent"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_24rgh")
+debug_color = Color(0.960784, 0.898039, 0.803922, 0.419608)

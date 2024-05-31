@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://3dx5yvw1dnij"]
+
+[ext_resource type="Script" path="res://components/detections/collectible_aura_box_component.gd" id="1_5emur"]
+
+[node name="CollectibleAuraBoxComponent" type="Area2D"]
+monitorable = false
+script = ExtResource("1_5emur")

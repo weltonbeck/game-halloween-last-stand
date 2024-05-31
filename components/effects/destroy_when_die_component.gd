@@ -1,7 +1,7 @@
 class_name DestroyWhenDieComponent
 extends Node2D
 
-@export var await_time:float = 0.1
+@export var await_time:float = 0.2
 
 @export_category("Nodes")
 @export var health_component:HealthComponent

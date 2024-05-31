@@ -24,9 +24,7 @@ func _physics_process(_delta: float) -> void:
 			state_machine.travel("Idle")
 		
 		flip_sprite()
-		
-		
-		
+
 func flip_sprite() -> void:
 	if (sprite):
 		if (input.input_vector.x < 0):

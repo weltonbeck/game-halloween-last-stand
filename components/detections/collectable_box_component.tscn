@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkf6ikarih12l"]
+
+[ext_resource type="Script" path="res://components/detections/collectable_box_component.gd" id="1_36ha1"]
+
+[node name="CollectableBoxComponent" type="Area2D"]
+script = ExtResource("1_36ha1")

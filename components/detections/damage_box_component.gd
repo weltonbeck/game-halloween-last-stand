@@ -9,7 +9,7 @@ signal applied_damage()
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
-func _on_area_entered(area:HitboxComponent) -> void:
+func _on_area_entered(area:HitBoxComponent) -> void:
 	if (area.has_method("set_damage")):
 		area.set_damage(damage)
 		applied_damage.emit()

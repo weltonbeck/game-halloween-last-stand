@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1l4xel5bulie"]
+
+[ext_resource type="Texture2D" uid="uid://cbby6ajfc26l5" path="res://misc/collectables/coin.png" id="1_3cx63"]
+[ext_resource type="PackedScene" uid="uid://bamq0fme31vqo" path="res://components/movements/movement_component.tscn" id="2_tsjcs"]
+[ext_resource type="Script" path="res://components/inputs/follow_player_input_component.gd" id="3_7amff"]
+[ext_resource type="PackedScene" uid="uid://bkf6ikarih12l" path="res://components/detections/collectable_box_component.tscn" id="4_judl6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6lgm"]
+atlas = ExtResource("1_3cx63")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71r38"]
+atlas = ExtResource("1_3cx63")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djqvw"]
+atlas = ExtResource("1_3cx63")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj3kq"]
+atlas = ExtResource("1_3cx63")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fh1pp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6lgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71r38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djqvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj3kq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fp8gv"]
+radius = 4.12311
+
+[node name="Coin" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fh1pp")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("target", "input") instance=ExtResource("2_tsjcs")]
+is_active = false
+target = NodePath("..")
+input = NodePath("../FollowPlayerInputComponent")
+
+[node name="FollowPlayerInputComponent" type="Node2D" parent="."]
+script = ExtResource("3_7amff")
+min_distance = 0.0
+
+[node name="CollectableBoxComponent" parent="." node_paths=PackedStringArray("target", "movementComponent") instance=ExtResource("4_judl6")]
+collision_layer = 16
+item_name = "Coin"
+target = NodePath("..")
+movementComponent = NodePath("../MovementComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableBoxComponent"]
+shape = SubResource("CircleShape2D_fp8gv")

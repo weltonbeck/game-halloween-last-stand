@@ -1,14 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://tseuugmpt5ea"]
+[gd_scene load_steps=20 format=3 uid="uid://tseuugmpt5ea"]
 
 [ext_resource type="Texture2D" uid="uid://rhyc6n4gw2i6" path="res://enemies/pumpkin-idle.png" id="1_yyda7"]
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_mg4nq"]
 [ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="3_80mji"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="4_br10q"]
-[ext_resource type="Script" path="res://components/detections/hitbox_component.gd" id="5_l1nly"]
+[ext_resource type="Script" path="res://components/detections/hit_box_component.gd" id="5_l1nly"]
 [ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="6_vbwov"]
 [ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="7_6t6iv"]
 [ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="8_fwsnv"]
+[ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="9_24xia"]
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="9_hh3dl"]
+[ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="10_lsn7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k4ia"]
 atlas = ExtResource("1_yyda7")
@@ -85,7 +87,7 @@ position = Vector2(0, -1)
 [node name="HealthComponent" type="Node2D" parent="."]
 position = Vector2(0, -1)
 script = ExtResource("4_br10q")
-max_health = 15
+max_health = 5
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(0, -1)
@@ -101,6 +103,7 @@ debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 
 [node name="DestroyWhenDieComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("6_vbwov")]
 position = Vector2(0, -1)
+await_time = 0.2
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
 
@@ -113,6 +116,13 @@ target = NodePath("..")
 position = Vector2(0, -1)
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
+
+[node name="DropItens" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("9_24xia")]
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+item_count = 1
+item_0/item = ExtResource("10_lsn7e")
+item_0/drop_chances = 50
 
 [node name="DamageBoxComponent" parent="." instance=ExtResource("9_hh3dl")]
 position = Vector2(0, -1)
