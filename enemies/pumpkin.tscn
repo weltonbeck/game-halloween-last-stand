@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="13_fncfl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb5aj"]
-radius = 6.0
-height = 16.0
+radius = 8.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_im5y2"]
 radius = 8.0
@@ -139,17 +139,16 @@ input = NodePath("FollowPlayerInputComponent")
 animation_tree = NodePath("AnimationTree")
 movement_component = NodePath("MovementComponent")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pb5aj")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(0.5, 0)
 texture = ExtResource("1_yyda7")
 hframes = 4
 vframes = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_pb5aj")
 
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("target", "input")]
 position = Vector2(0, -1)
@@ -164,7 +163,7 @@ position = Vector2(0, -1)
 [node name="HealthComponent" type="Node2D" parent="."]
 position = Vector2(0, -1)
 script = ExtResource("4_br10q")
-max_health = 23
+max_health = 15
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(0, -1)
@@ -174,7 +173,6 @@ script = ExtResource("5_l1nly")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_im5y2")
 debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 
@@ -199,7 +197,6 @@ collision_layer = 0
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
-position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_mux7y")
 debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
 
@@ -208,12 +205,12 @@ health_component = NodePath("../HealthComponent")
 target = NodePath("..")
 item_count = 2
 item_0/item = ExtResource("10_lsn7e")
-item_0/drop_chances = 60
+item_0/drop_chances = 80
 item_1/item = ExtResource("12_m3264")
-item_1/drop_chances = 20
+item_1/drop_chances = 30
 
 [node name="Shadow" parent="." instance=ExtResource("13_fncfl")]
-position = Vector2(4.76837e-07, 5)
+position = Vector2(0, 4)
 scale = Vector2(1.25, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

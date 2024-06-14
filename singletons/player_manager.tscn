@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://mplxv28ib3dd"]
-
-[ext_resource type="Script" path="res://singletons/player_manager.gd" id="1_gwgny"]
-
-[node name="PlayerManager" type="Node2D"]
-script = ExtResource("1_gwgny")

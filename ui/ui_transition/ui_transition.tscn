@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbcqql2c0g87k"]
+
+[ext_resource type="Script" path="res://ui/ui_transition/ui_transition.gd" id="1_2xbt1"]
+[ext_resource type="Shader" path="res://ui/ui_transition/ui_transition.gdshader" id="1_8dg5j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd8j0"]
+shader = ExtResource("1_8dg5j")
+shader_parameter/lines = 10.0
+shader_parameter/threshold = 0.0
+shader_parameter/line_color_a = Color(0.0705882, 0.0901961, 0.239216, 1)
+shader_parameter/line_color_b = Color(0.0705882, 0.0901961, 0.239216, 1)
+
+[sub_resource type="Animation" id="Animation_ws18s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nuvqb"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2jr3l"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pslbn"]
+_data = {
+"RESET": SubResource("Animation_ws18s"),
+"fade_in": SubResource("Animation_nuvqb"),
+"fade_out": SubResource("Animation_2jr3l")
+}
+
+[node name="UiTransition" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_2xbt1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fd8j0")
+offset_right = 480.0
+offset_bottom = 272.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pslbn")
+}

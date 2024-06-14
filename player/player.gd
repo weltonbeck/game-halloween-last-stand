@@ -8,8 +8,8 @@ extends CharacterBody2D
 var state_machine
 
 func _ready() -> void:
-	if (PlayerManager):
-		PlayerManager.set_player(self)
+	if (GameManager):
+		GameManager.set_player(self)
 		
 	if (animation_tree):
 		state_machine = animation_tree["parameters/playback"]

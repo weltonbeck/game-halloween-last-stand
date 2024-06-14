@@ -1,0 +1,276 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddfx835iil75p"]
+
+[ext_resource type="Script" path="res://ui/hud_store/hud_store.gd" id="1_jqikf"]
+[ext_resource type="Texture2D" uid="uid://dhvu7xnqs60nk" path="res://systems/hud_paper.png" id="1_r2wxf"]
+[ext_resource type="FontFile" uid="uid://cm2yuilwqjaei" path="res://font/Kenney Pixel.ttf" id="2_dqcmc"]
+[ext_resource type="Texture2D" uid="uid://bwgwhdkc1cefr" path="res://ui/hud_store/cards/life.png" id="3_islbs"]
+[ext_resource type="Texture2D" uid="uid://b2nmm4xfw3y1s" path="res://ui/hud_store/cards/power.png" id="3_rc066"]
+[ext_resource type="Texture2D" uid="uid://c8088xowlnplt" path="res://ui/hud_store/cards/power_hover.png" id="4_2qx68"]
+[ext_resource type="Texture2D" uid="uid://d0d8x3acn403l" path="res://ui/hud_store/cards/life_hover.png" id="4_618so"]
+[ext_resource type="Texture2D" uid="uid://gfco8d2fye03" path="res://ui/hud_store/cards/speed.png" id="7_dnmsv"]
+[ext_resource type="Texture2D" uid="uid://bcrcl2s41sa5" path="res://ui/hud_store/cards/speed_hover.png" id="8_o3oxx"]
+[ext_resource type="Texture2D" uid="uid://fbk8a58n2d3j" path="res://ui/hud_store/cards/ranged.png" id="9_xevy6"]
+[ext_resource type="Texture2D" uid="uid://dms7657mqmr2l" path="res://ui/hud_store/cards/ranged_hover.png" id="10_te1kl"]
+[ext_resource type="Texture2D" uid="uid://djqqarntdo8n6" path="res://ui/hud_store/wood_stick.png" id="12_20fr0"]
+[ext_resource type="Texture2D" uid="uid://bsr0abbcpqutp" path="res://ui/hud_store/wodden_arrow.png" id="12_yimuf"]
+[ext_resource type="Texture2D" uid="uid://c7tmfjexrxtve" path="res://ui/hud_store/wodden_arrow_hover.png" id="14_370vb"]
+
+[node name="HudStore" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_jqikf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 3
+offset_left = -136.0
+offset_top = -72.0
+offset_right = 592.0
+offset_bottom = 328.0
+color = Color(0.160784, 0.196078, 0.407843, 0.894118)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 56.0
+offset_right = 50.0
+offset_bottom = 89.0
+grow_horizontal = 2
+texture = ExtResource("1_r2wxf")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 9
+patch_margin_top = 4
+patch_margin_right = 9
+patch_margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -13.5
+offset_right = 41.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.380392, 0.223529, 0.231373, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 32
+text = "MARKET"
+
+[node name="TextureButtonLife" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -23.0
+offset_right = -88.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_islbs")
+texture_hover = ExtResource("4_618so")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonLife"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 7.0
+offset_right = 56.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+text = "Life"
+
+[node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonLife"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 68.0
+offset_right = 63.0
+offset_bottom = 88.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]15000[/center]"
+
+[node name="TextureButtonPower" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -23.0
+offset_right = -8.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_rc066")
+texture_hover = ExtResource("4_2qx68")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonPower"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 68.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+text = "Power"
+
+[node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonPower"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 68.0
+offset_right = 63.0
+offset_bottom = 87.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]15000[/center]
+"
+
+[node name="TextureButtonSpeed" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -23.0
+offset_right = 72.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_dnmsv")
+texture_hover = ExtResource("8_o3oxx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonSpeed"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+text = "Speed"
+
+[node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonSpeed"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 68.0
+offset_right = 60.0
+offset_bottom = 87.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]15000[/center]
+"
+
+[node name="TextureButtonCurse" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -23.0
+offset_right = 152.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_xevy6")
+texture_hover = ExtResource("10_te1kl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonCurse"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+text = "Curse
+"
+
+[node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonCurse"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 68.0
+offset_right = 63.0
+offset_bottom = 87.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]15000[/center]
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(425, 246)
+scale = Vector2(1.5, 3.7)
+texture = ExtResource("12_20fr0")
+
+[node name="TextureButtonNext" type="TextureButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -46.0
+offset_right = -16.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("12_yimuf")
+texture_hover = ExtResource("14_370vb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonNext"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 24.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.756863, 0.85098, 0.94902, 1)
+theme_override_fonts/normal_font = ExtResource("2_dqcmc")
+theme_override_font_sizes/normal_font_size = 24
+text = "N E X T"
+
+[connection signal="pressed" from="TextureButtonLife" to="." method="_on_texture_button_life_pressed"]
+[connection signal="pressed" from="TextureButtonPower" to="." method="_on_texture_button_power_pressed"]
+[connection signal="pressed" from="TextureButtonSpeed" to="." method="_on_texture_button_speed_pressed"]
+[connection signal="pressed" from="TextureButtonCurse" to="." method="_on_texture_button_curse_pressed"]
+[connection signal="pressed" from="TextureButtonNext" to="." method="_on_texture_button_next_pressed"]

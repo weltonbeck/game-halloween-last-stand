@@ -10,10 +10,6 @@ extends Node2D
 
 var cooldown: float = 0.0
 
-func _ready() -> void:
-	if (WaveManager):
-		WaveManager.set_mob_spawner(self)
-
 func _process(delta: float):
 	if (is_active):
 		# Temporizador

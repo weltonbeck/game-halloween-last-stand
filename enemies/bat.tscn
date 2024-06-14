@@ -130,7 +130,7 @@ health_component = NodePath("../HealthComponent")
 target = NodePath("..")
 item_count = 2
 item_0/item = ExtResource("11_oq6v7")
-item_0/drop_chances = 50
+item_0/drop_chances = 60
 item_1/item = ExtResource("12_060am")
 item_1/drop_chances = 10
 

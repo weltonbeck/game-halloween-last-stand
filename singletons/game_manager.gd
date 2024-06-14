@@ -1,14 +1,17 @@
 extends Node2D
 
-var store:HudStore
+@onready var transition = $UiTransition
+var player:Player
 
-func _ready() -> void:
-	WaveManager.wave_end.connect(on_wave_end)
-	WaveManager.play()
+func set_player(tmp:Player) -> void:
+	player = tmp
 
-func on_wave_end() -> void:
-	store.open()
+func start_game() -> void:
+	await change_scene("res://scennes/game_scenne.tscn")
 
-func on_store_end() -> void:
-	store.hide()
-	WaveManager.play()
+func change_scene(new_scene: String) -> void:
+	await transition.close()
+	get_tree().change_scene_to_file(new_scene)
+	await get_tree().process_frame
+	await get_tree().create_timer(0.2).timeout
+	await transition.open()

@@ -11,16 +11,15 @@ config_version=5
 [application]
 
 config/name="halloween last stand"
-run/main_scene="res://scennes/test_scenne.tscn"
+run/main_scene="res://scennes/title_game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://ui/hud-player-head.png"
+config/icon="res://ui/hud_life_progress/hud-player-head.png"
 
 [autoload]
 
-PlayerManager="*res://singletons/player_manager.gd"
 InventoryManager="*res://singletons/inventory_manager.gd"
-WaveManager="*res://singletons/wave_manager.tscn"
-GameManager="*res://singletons/game_manager.gd"
+GameManager="*res://singletons/game_manager.tscn"
+PowerupManager="*res://singletons/powerup_manager.gd"
 
 [display]
 
