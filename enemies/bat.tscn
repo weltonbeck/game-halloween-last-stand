@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dpxpnfa7tw6la"]
+[gd_scene load_steps=22 format=3 uid="uid://dpxpnfa7tw6la"]
 
+[ext_resource type="Script" path="res://enemies/bat.gd" id="1_1bl4t"]
 [ext_resource type="Texture2D" uid="uid://bmv53s44ylpgb" path="res://enemies/bat.png" id="1_e4431"]
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_bju4p"]
 [ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="3_vg5ry"]
@@ -11,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="9_x1ou3"]
 [ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="10_ehe4j"]
 [ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="11_oq6v7"]
+[ext_resource type="PackedScene" uid="uid://o35drjarw5m3" path="res://misc/collectables/bag_coin.tscn" id="12_060am"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="13_mqlhr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qho3o"]
 atlas = ExtResource("1_e4431")
@@ -42,7 +45,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0w0n"]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_im5y2"]
 radius = 7.0
@@ -50,12 +53,17 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_mux7y"]
 radius = 8.0
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "input", "movement_component")]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
+script = ExtResource("1_1bl4t")
+sprite = NodePath("AnimatedSprite2D")
+input = NodePath("FollowPlayerInputComponent")
+movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_dhy6l")
 autoplay = "default"
@@ -68,7 +76,7 @@ shape = SubResource("CircleShape2D_s0w0n")
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("target", "input")]
 position = Vector2(0, 3)
 script = ExtResource("2_bju4p")
-speed = 30.0
+speed = 45.0
 target = NodePath("..")
 input = NodePath("../FollowPlayerInputComponent")
 
@@ -78,7 +86,7 @@ position = Vector2(0, 3)
 [node name="HealthComponent" type="Node2D" parent="."]
 position = Vector2(0, 3)
 script = ExtResource("3_x4wfe")
-max_health = 5
+max_health = 6
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(0, 17)
@@ -94,7 +102,6 @@ debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 
 [node name="DestroyWhenDieComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("6_x4688")]
 position = Vector2(0, 3)
-await_time = 0.2
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
 
@@ -121,6 +128,14 @@ debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
 [node name="DropItens" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("10_ehe4j")]
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
-item_count = 1
+item_count = 2
 item_0/item = ExtResource("11_oq6v7")
-item_0/drop_chances = 30
+item_0/drop_chances = 50
+item_1/item = ExtResource("12_060am")
+item_1/drop_chances = 10
+
+[node name="Shadow" parent="." instance=ExtResource("13_mqlhr")]
+position = Vector2(-0.25, 14)
+scale = Vector2(0.78125, 0.5)
+
+[connection signal="take_damage" from="HealthComponent" to="." method="_on_health_component_take_damage"]

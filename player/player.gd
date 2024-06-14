@@ -9,7 +9,7 @@ var state_machine
 
 func _ready() -> void:
 	if (PlayerManager):
-		PlayerManager.player = self
+		PlayerManager.set_player(self)
 		
 	if (animation_tree):
 		state_machine = animation_tree["parameters/playback"]

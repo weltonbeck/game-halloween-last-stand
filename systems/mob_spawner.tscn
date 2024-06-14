@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjj27jk6lm5p"]
+
+[ext_resource type="Script" path="res://systems/mob_spawner.gd" id="1_0g7f8"]
+[ext_resource type="PackedScene" uid="uid://dpxpnfa7tw6la" path="res://enemies/bat.tscn" id="2_m1833"]
+[ext_resource type="PackedScene" uid="uid://tseuugmpt5ea" path="res://enemies/pumpkin.tscn" id="3_tueel"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_0g7f8")
+creatures = Array[PackedScene]([ExtResource("2_m1833"), ExtResource("3_tueel"), ExtResource("2_m1833")])
+collision_mask = 2

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce34kwoputs6r"]
+[gd_scene load_steps=6 format=3 uid="uid://ce34kwoputs6r"]
 
 [ext_resource type="Texture2D" uid="uid://d1tb3u6vbqt7b" path="res://misc/trees/pine.png" id="1_5lroa"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="2_cad13"]
 [ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top_component.tscn" id="2_smnrl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxw3p"]
@@ -15,8 +16,13 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(0, -13)
 texture = ExtResource("1_5lroa")
+
+[node name="Shadow" parent="." instance=ExtResource("2_cad13")]
+position = Vector2(-8.34465e-07, 9)
+scale = Vector2(1.5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -25,7 +31,9 @@ shape = SubResource("CapsuleShape2D_bxw3p")
 
 [node name="TransparencyWhenOnTop" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_smnrl")]
 position = Vector2(0, 6)
+collision_layer = 32
 collision_mask = 1
+monitorable = true
 target = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransparencyWhenOnTop"]

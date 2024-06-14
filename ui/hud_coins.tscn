@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqqk8p77nusfq"]
+
+[ext_resource type="Texture2D" uid="uid://dhvu7xnqs60nk" path="res://ui/hud_paper.png" id="1_3a627"]
+[ext_resource type="Script" path="res://ui/hud_coins.gd" id="1_y1cwq"]
+[ext_resource type="Texture2D" uid="uid://bm6qaqkoo0uxv" path="res://ui/hud-bag-coin.png" id="2_ba5xu"]
+[ext_resource type="FontFile" uid="uid://cm2yuilwqjaei" path="res://font/Kenney Pixel.ttf" id="3_j626f"]
+
+[node name="HudCoins" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_y1cwq")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 37.0
+grow_horizontal = 0
+texture = ExtResource("1_3a627")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 9
+patch_margin_top = 4
+patch_margin_right = 9
+patch_margin_bottom = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(20, 13)
+texture = ExtResource("2_ba5xu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_top = 3.0
+offset_right = -5.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.380392, 0.223529, 0.231373, 1)
+theme_override_fonts/normal_font = ExtResource("3_j626f")
+theme_override_font_sizes/normal_font_size = 28
+text = "00000"
+scroll_active = false

@@ -9,7 +9,7 @@ var items: Array[PackedScene] = []
 var drop_chances: Array[int] = []
 
 func _ready() -> void:
-	if (health_component):
+	if (health_component && health_component.die):
 		health_component.die.connect(_on_die)
 		
 func get_random_pos_in_circle(radius : float) -> Vector2 :

@@ -1,32 +1,103 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyvi2bgeqosjm"]
+[gd_scene load_steps=14 format=3 uid="uid://dyvi2bgeqosjm"]
 
-[ext_resource type="Texture2D" uid="uid://bvvqem1ihqvdh" path="res://misc/bullets/bullet.png" id="1_maukj"]
+[ext_resource type="Texture2D" uid="uid://bstfo0yl0clfa" path="res://misc/bullets/bullet.png" id="1_maukj"]
 [ext_resource type="Script" path="res://misc/bullets/bullet.gd" id="1_o6uj1"]
+[ext_resource type="PackedScene" uid="uid://bmdum35qcb78i" path="res://misc/explosion/explosion.tscn" id="2_2tmxl"]
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="3_gwnfs"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4js0"]
+atlas = ExtResource("1_maukj")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hvmq"]
+atlas = ExtResource("1_maukj")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr88v"]
+atlas = ExtResource("1_maukj")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v1t1"]
+atlas = ExtResource("1_maukj")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uevn"]
+atlas = ExtResource("1_maukj")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j0aq"]
+atlas = ExtResource("1_maukj")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myhdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4js0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hvmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr88v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v1t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uevn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j0aq")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 15.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dbc2e"]
-radius = 5.0
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64oxk"]
+radius = 8.0
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_o6uj1")
+pre_explosion = ExtResource("2_2tmxl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
-texture = ExtResource("1_maukj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 50
+sprite_frames = SubResource("SpriteFrames_myhdh")
+animation = &"spawn"
+autoplay = "spawn"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, -2)
-scale = Vector2(0.5, 0.7)
+position = Vector2(0.5, 1)
+scale = Vector2(1.15, 1)
 
 [node name="DamageBoxComponent" parent="." instance=ExtResource("3_gwnfs")]
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
-position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_dbc2e")
 debug_color = Color(0.905882, 0.207843, 0.227451, 0.419608)
 
+[node name="TreeArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreeArea2D"]
+shape = SubResource("CircleShape2D_64oxk")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="applied_damage" from="DamageBoxComponent" to="." method="_on_damage_box_component_applied_damage"]
+[connection signal="area_entered" from="TreeArea2D" to="." method="_on_tree_area_2d_area_entered"]

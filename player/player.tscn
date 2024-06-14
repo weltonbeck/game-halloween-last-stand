@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://c7gsbegdxii8h"]
+[gd_scene load_steps=36 format=3 uid="uid://c7gsbegdxii8h"]
 
 [ext_resource type="PackedScene" uid="uid://cfhr6q7yvly0r" path="res://player/player_staff.tscn" id="1_aho7j"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_cuhy1"]
 [ext_resource type="PackedScene" uid="uid://cofgm0wdeiy7f" path="res://components/health_component.tscn" id="2_xpi4e"]
 [ext_resource type="Texture2D" uid="uid://btdq2i4vimy4p" path="res://player/player.png" id="2_yali8"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="3_ctg6h"]
 [ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hit_box_component.tscn" id="3_v7n6x"]
 [ext_resource type="PackedScene" uid="uid://bamq0fme31vqo" path="res://components/movements/movement_component.tscn" id="4_tilyf"]
 [ext_resource type="Script" path="res://components/inputs/player_input_component.gd" id="5_rt4w6"]
@@ -11,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ler4fjt2kf6k" path="res://components/attack_shooting_component.tscn" id="7_tcyue"]
 [ext_resource type="Script" path="res://components/effects/blink_when_get_damage_component.gd" id="9_0baky"]
 [ext_resource type="PackedScene" uid="uid://dg8iyvp133ss3" path="res://components/movements/rotate_target_and_follow_mouse_component.tscn" id="10_1e23t"]
-[ext_resource type="PackedScene" uid="uid://3dx5yvw1dnij" path="res://components/detections/collectible_aura_box_component.tscn" id="12_i5hni"]
+[ext_resource type="PackedScene" uid="uid://3dx5yvw1dnij" path="res://components/detections/collector_magnetic_aura_box_component.tscn" id="12_4knvl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iack1"]
 radius = 6.0
@@ -219,10 +220,15 @@ input = NodePath("PlayerInputComponent")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(0.5, 3)
 texture = ExtResource("2_yali8")
 hframes = 4
 vframes = 6
+
+[node name="Shadow" parent="." instance=ExtResource("3_ctg6h")]
+position = Vector2(0, 19)
+scale = Vector2(1.2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
@@ -243,8 +249,9 @@ shape = SubResource("CapsuleShape2D_t6ao0")
 debug_color = Color(1, 0.2486, 0.582651, 0.42)
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("target", "input") instance=ExtResource("4_tilyf")]
+z_index = 10
 position = Vector2(0, 3)
-speed = 60.0
+speed = 50.0
 target = NodePath("..")
 input = NodePath("../PlayerInputComponent")
 
@@ -253,8 +260,10 @@ position = Vector2(0, 3)
 script = ExtResource("5_rt4w6")
 deadzone = null
 
-[node name="AttackShootingComponent" parent="." node_paths=PackedStringArray("input") instance=ExtResource("7_tcyue")]
+[node name="AttackShootingComponent" parent="." node_paths=PackedStringArray("spawner_marker", "input") instance=ExtResource("7_tcyue")]
 position = Vector2(0, 3)
+reload_time = 1.5
+spawner_marker = NodePath("../PlayerStaff/Marker2D")
 input = NodePath("../PlayerInputComponent")
 bullet = ExtResource("7_3bfyn")
 
@@ -264,9 +273,10 @@ script = ExtResource("9_0baky")
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
 
-[node name="PlayerStaff" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_aho7j")]
+[node name="PlayerStaff" parent="." node_paths=PackedStringArray("player", "attackComponent") instance=ExtResource("1_aho7j")]
 position = Vector2(21, 8)
 player = NodePath("..")
+attackComponent = NodePath("../AttackShootingComponent")
 
 [node name="RotateTargetAndFollowMouseComponent3" parent="PlayerStaff" node_paths=PackedStringArray("target", "rotate_center_target") instance=ExtResource("10_1e23t")]
 radius = 18.0
@@ -274,7 +284,7 @@ target = NodePath("..")
 rotate_center_target = NodePath("../..")
 
 [node name="Marker2D" type="Marker2D" parent="PlayerStaff"]
-position = Vector2(0, -12)
+position = Vector2(0, -17)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
@@ -290,11 +300,11 @@ libraries = {
 "": SubResource("AnimationLibrary_qkgk8")
 }
 
-[node name="CollectibleAuraBoxComponent" parent="." instance=ExtResource("12_i5hni")]
+[node name="CollectorMagneticAuraBoxComponent" parent="." instance=ExtResource("12_4knvl")]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleAuraBoxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectorMagneticAuraBoxComponent"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_24rgh")
 debug_color = Color(0.960784, 0.898039, 0.803922, 0.419608)

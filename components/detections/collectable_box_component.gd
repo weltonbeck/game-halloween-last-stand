@@ -4,21 +4,20 @@ extends Area2D
 @export var item_name:String
 @export var item_quantity : int = 1
 
-@export_subgroup("Destroy after collected")
+@export var use_magnetic_aura: bool = true
 @export var destroy_target:bool = true
+
 @export var target:Node2D
-@export_subgroup("Aura collected")
-@export var activate_aura_collected:bool = true
-@export var movementComponent:MovementComponent
 
 signal was_collected()
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
-func activate_aura() -> void:
-	if (activate_aura_collected && movementComponent):
-		movementComponent.is_active = true
+func aura_area_entered() -> void:
+	if (use_magnetic_aura && target):
+		$MovementComponent.target = target
+		$MovementComponent.is_active = true
 
 func _on_area_entered(_area:Area2D) -> void:
 	if (InventoryManager && item_name):

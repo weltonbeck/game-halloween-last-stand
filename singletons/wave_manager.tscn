@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://du08l0q5in4gg"]
+
+[ext_resource type="Script" path="res://singletons/wave_manager.gd" id="1_j38j5"]
+
+[node name="WaveManager" type="Node2D"]
+script = ExtResource("1_j38j5")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

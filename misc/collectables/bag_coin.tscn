@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://o35drjarw5m3"]
+
+[ext_resource type="Texture2D" uid="uid://d2rwy8inw1rwo" path="res://misc/collectables/bag_coin.png" id="1_bxpbv"]
+[ext_resource type="PackedScene" uid="uid://bkf6ikarih12l" path="res://components/detections/collectable_box_component.tscn" id="2_e6kxm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t66gx"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddb8n"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cect0"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlqwg"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avr03"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3qe3"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv4us"]
+atlas = ExtResource("1_bxpbv")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fniq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t66gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddb8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cect0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlqwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avr03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3qe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv4us")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fp8gv"]
+radius = 7.0
+
+[node name="BagCoin" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_fniq4")
+autoplay = "default"
+frame_progress = 0.877684
+
+[node name="CollectableBoxComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_e6kxm")]
+collision_layer = 16
+item_name = "Coin"
+item_quantity = 20
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableBoxComponent"]
+shape = SubResource("CircleShape2D_fp8gv")

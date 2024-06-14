@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://vbbsw7gg4v7t"]
+[gd_scene load_steps=6 format=3 uid="uid://vbbsw7gg4v7t"]
 
 [ext_resource type="Texture2D" uid="uid://d1olnk3kqcxx" path="res://misc/trees/dry_tree.png" id="1_ylaco"]
 [ext_resource type="PackedScene" uid="uid://d383adqyq47f8" path="res://components/effects/transparency_when_on_top_component.tscn" id="2_8x44k"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="3_4ne0m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxw3p"]
 radius = 6.0
@@ -17,6 +18,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(0, -15)
 texture = ExtResource("1_ylaco")
 
@@ -27,10 +29,16 @@ shape = SubResource("CapsuleShape2D_bxw3p")
 
 [node name="TransparencyWhenOnTop" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_8x44k")]
 position = Vector2(0, 7)
+collision_layer = 32
 collision_mask = 1
+monitorable = true
 target = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransparencyWhenOnTop"]
 position = Vector2(0, -22)
 shape = SubResource("CapsuleShape2D_tnaba")
 debug_color = Color(0.780009, 0.679745, 0.34949, 0.42)
+
+[node name="Shadow" parent="." instance=ExtResource("3_4ne0m")]
+position = Vector2(-1.5, 5)
+scale = Vector2(1.6875, 1)

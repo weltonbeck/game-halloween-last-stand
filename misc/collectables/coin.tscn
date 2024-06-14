@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1l4xel5bulie"]
+[gd_scene load_steps=9 format=3 uid="uid://d1l4xel5bulie"]
 
 [ext_resource type="Texture2D" uid="uid://cbby6ajfc26l5" path="res://misc/collectables/coin.png" id="1_3cx63"]
-[ext_resource type="PackedScene" uid="uid://bamq0fme31vqo" path="res://components/movements/movement_component.tscn" id="2_tsjcs"]
-[ext_resource type="Script" path="res://components/inputs/follow_player_input_component.gd" id="3_7amff"]
 [ext_resource type="PackedScene" uid="uid://bkf6ikarih12l" path="res://components/detections/collectable_box_component.tscn" id="4_judl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6lgm"]
@@ -52,20 +50,10 @@ autoplay = "default"
 frame = 3
 frame_progress = 1.0
 
-[node name="MovementComponent" parent="." node_paths=PackedStringArray("target", "input") instance=ExtResource("2_tsjcs")]
-is_active = false
-target = NodePath("..")
-input = NodePath("../FollowPlayerInputComponent")
-
-[node name="FollowPlayerInputComponent" type="Node2D" parent="."]
-script = ExtResource("3_7amff")
-min_distance = 0.0
-
-[node name="CollectableBoxComponent" parent="." node_paths=PackedStringArray("target", "movementComponent") instance=ExtResource("4_judl6")]
+[node name="CollectableBoxComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_judl6")]
 collision_layer = 16
 item_name = "Coin"
 target = NodePath("..")
-movementComponent = NodePath("../MovementComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableBoxComponent"]
 shape = SubResource("CircleShape2D_fp8gv")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfhr6q7yvly0r"]
+[gd_scene load_steps=11 format=3 uid="uid://cfhr6q7yvly0r"]
 
 [ext_resource type="Texture2D" uid="uid://dhy2fi216q037" path="res://player/staff.png" id="1_fl3vk"]
 [ext_resource type="Script" path="res://player/player_staff.gd" id="1_nvy4o"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="3_a101i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kour2"]
 atlas = ExtResource("1_fl3vk")
@@ -46,8 +47,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_cnaie")
 }],
 "loop": false,
-"name": &"atack",
-"speed": 5.0
+"name": &"attack",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -62,6 +63,18 @@ animations = [{
 script = ExtResource("1_nvy4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_80hr5")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+flip_h = true
+
+[node name="Shadow" parent="." instance=ExtResource("3_a101i")]
+position = Vector2(5, 17)
+scale = Vector2(0.4375, 0.388889)
+
+[node name="LeftMarker2D" type="Marker2D" parent="."]
+position = Vector2(-4, 17)
+
+[node name="RightMarker2D" type="Marker2D" parent="."]
+position = Vector2(5, 17)

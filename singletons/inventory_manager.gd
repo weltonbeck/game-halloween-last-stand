@@ -28,3 +28,7 @@ func remove_item(item_name: String, quantity: int) -> void:
 		else :
 			inventory[item_name] = 0
 		inventory_change.emit()
+
+func clear_all() -> void:
+	inventory = {}
+	inventory_change.emit()
