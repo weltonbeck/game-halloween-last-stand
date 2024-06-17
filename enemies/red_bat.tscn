@@ -1,0 +1,172 @@
+[gd_scene load_steps=26 format=3 uid="uid://bt6nk1ot1siyo"]
+
+[ext_resource type="Script" path="res://enemies/bat.gd" id="1_dejal"]
+[ext_resource type="Texture2D" uid="uid://bmv53s44ylpgb" path="res://enemies/bat.png" id="2_2d31c"]
+[ext_resource type="Script" path="res://components/movements/movement_component.gd" id="3_6tmg8"]
+[ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="4_7f50r"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="5_saf8j"]
+[ext_resource type="Script" path="res://components/detections/hit_box_component.gd" id="6_v87ho"]
+[ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="7_1p82a"]
+[ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="8_by4mt"]
+[ext_resource type="PackedScene" uid="uid://ddw218ya8rhsk" path="res://components/effects/life_bar_component.tscn" id="9_ukj3l"]
+[ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="10_701si"]
+[ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="11_t2t5e"]
+[ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="12_xfp2q"]
+[ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="13_uo7cn"]
+[ext_resource type="PackedScene" uid="uid://o35drjarw5m3" path="res://misc/collectables/bag_coin.tscn" id="14_ped26"]
+[ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="15_gc0ju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qho3o"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdig5"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmxy4"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo4ux"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12mos"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5pv1"]
+atlas = ExtResource("2_2d31c")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5u1l3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qho3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdig5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmxy4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo4ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12mos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5pv1")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0w0n"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im5y2"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mux7y"]
+radius = 8.0
+
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "input", "movement_component")]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_dejal")
+sprite = NodePath("AnimatedSprite2D")
+input = NodePath("FollowPlayerInputComponent")
+movement_component = NodePath("MovementComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_5u1l3")
+animation = &"red"
+autoplay = "red"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_s0w0n")
+
+[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("target", "input")]
+position = Vector2(0, 3)
+script = ExtResource("3_6tmg8")
+speed = 70.0
+target = NodePath("..")
+input = NodePath("../FollowPlayerInputComponent")
+
+[node name="FollowPlayerInputComponent" parent="." instance=ExtResource("4_7f50r")]
+position = Vector2(0, 3)
+
+[node name="HealthComponent" type="Node2D" parent="."]
+position = Vector2(0, 3)
+script = ExtResource("5_saf8j")
+max_health = 35
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+position = Vector2(0, 17)
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("6_v87ho")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -18)
+shape = SubResource("CircleShape2D_im5y2")
+debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
+
+[node name="DestroyWhenDieComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("7_1p82a")]
+position = Vector2(0, 3)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="ShowDamageDigitWhenGetDamageComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("8_by4mt")]
+position = Vector2(0, -2)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="LifeBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_ukj3l")]
+position = Vector2(0, 6)
+health_component = NodePath("../HealthComponent")
+
+[node name="BlinkWhenGetDamageComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("10_701si")]
+position = Vector2(0, 3)
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+
+[node name="DamageBoxComponent" parent="." instance=ExtResource("11_t2t5e")]
+position = Vector2(0, 3)
+collision_layer = 0
+damage = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_mux7y")
+debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
+
+[node name="DropItens" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("12_xfp2q")]
+health_component = NodePath("../HealthComponent")
+target = NodePath("..")
+item_count = 2
+item_0/item = ExtResource("13_uo7cn")
+item_0/drop_chances = 60
+item_1/item = ExtResource("14_ped26")
+item_1/drop_chances = 10
+
+[node name="Shadow" parent="." instance=ExtResource("15_gc0ju")]
+position = Vector2(-0.25, 14)
+scale = Vector2(0.78125, 0.5)
+
+[connection signal="take_damage" from="HealthComponent" to="." method="_on_health_component_take_damage"]

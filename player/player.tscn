@@ -242,6 +242,7 @@ max_health = 60
 position = Vector2(0, 3)
 collision_mask = 0
 health_component = NodePath("../HealthComponent")
+imortality_after_damage = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 3)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dpxpnfa7tw6la"]
+[gd_scene load_steps=23 format=3 uid="uid://dpxpnfa7tw6la"]
 
 [ext_resource type="Script" path="res://enemies/bat.gd" id="1_1bl4t"]
 [ext_resource type="Texture2D" uid="uid://bmv53s44ylpgb" path="res://enemies/bat.png" id="1_e4431"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="6_x4688"]
 [ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="7_7h236"]
 [ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="7_25qrl"]
+[ext_resource type="PackedScene" uid="uid://ddw218ya8rhsk" path="res://components/effects/life_bar_component.tscn" id="9_oh755"]
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="9_x1ou3"]
 [ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="10_ehe4j"]
 [ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="11_oq6v7"]
@@ -109,6 +110,10 @@ target = NodePath("..")
 position = Vector2(0, -2)
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
+
+[node name="LifeBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_oh755")]
+position = Vector2(0, 6)
+health_component = NodePath("../HealthComponent")
 
 [node name="BlinkWhenGetDamageComponent" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("7_7h236")]
 position = Vector2(0, 3)

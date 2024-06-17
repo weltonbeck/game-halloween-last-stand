@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://tseuugmpt5ea"]
+[gd_scene load_steps=30 format=3 uid="uid://tseuugmpt5ea"]
 
 [ext_resource type="Script" path="res://enemies/pumpkin.gd" id="1_s6rjm"]
 [ext_resource type="Texture2D" uid="uid://rhyc6n4gw2i6" path="res://enemies/pumpkin-idle.png" id="1_yyda7"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="9_24xia"]
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="9_hh3dl"]
 [ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="10_lsn7e"]
+[ext_resource type="PackedScene" uid="uid://ddw218ya8rhsk" path="res://components/effects/life_bar_component.tscn" id="10_n45n0"]
 [ext_resource type="PackedScene" uid="uid://o35drjarw5m3" path="res://misc/collectables/bag_coin.tscn" id="12_m3264"]
 [ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="13_fncfl"]
 
@@ -190,6 +191,10 @@ target = NodePath("..")
 position = Vector2(0, -1)
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
+
+[node name="LifeBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("10_n45n0")]
+position = Vector2(0, 8)
+health_component = NodePath("../HealthComponent")
 
 [node name="DamageBoxComponent" parent="." instance=ExtResource("9_hh3dl")]
 position = Vector2(0, -1)

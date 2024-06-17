@@ -18,7 +18,6 @@ func flip_sprite() -> void:
 		elif (input.input_vector.x > 0):
 			sprite.flip_h = false
 
-
 func _on_health_component_take_damage(_amount: int) -> void:
 	if (movement_component):
 		movement_component.is_active = false

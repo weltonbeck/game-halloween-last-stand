@@ -15,6 +15,7 @@ signal wave_end()
 func _ready() -> void:
 	if (store):
 		store.store_close.connect(play)
+	await get_tree().create_timer(0.2).timeout
 	play()
 
 func _process(_delta: float) -> void:

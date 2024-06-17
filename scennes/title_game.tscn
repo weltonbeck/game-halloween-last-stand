@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjawfvfe3tn7t"]
-
-[ext_resource type="PackedScene" uid="uid://4qm8j0lflr6a" path="res://ui/hud_title_game/hud_title_game.tscn" id="1_7rvko"]
-
-[node name="TitleGame" type="Node2D"]
-
-[node name="HudTitleGame" parent="." instance=ExtResource("1_7rvko")]

@@ -7,7 +7,7 @@ func set_player(tmp:Player) -> void:
 	player = tmp
 
 func start_game() -> void:
-	await change_scene("res://scennes/game_scenne.tscn")
+	await change_scene("res://scenes/game_scene.tscn")
 
 func change_scene(new_scene: String) -> void:
 	await transition.close()

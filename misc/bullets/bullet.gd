@@ -8,11 +8,21 @@ var is_able_to_move = false
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	powerup()
 	direction = global_position.direction_to(get_global_mouse_position())
 	$AnimatedSprite2D.play("spawn")
 	await $AnimatedSprite2D.animation_finished
 	is_able_to_move = true
 	$AnimatedSprite2D.play("idle")
+
+
+func powerup() -> void:
+	if (PowerupManager) :
+		var power_level = PowerupManager.get_value(PowerupManager.types.power)
+		if (power_level > 0):
+			$DamageBoxComponent.damage += 2 * power_level
+			scale.x = 1 + (0.1 * power_level)
+			scale.y = 1 + (0.1 * power_level)
 
 func _process(delta) -> void:
 	if (is_able_to_move):
@@ -31,5 +41,6 @@ func explode() -> void:
 	if (pre_explosion) :
 		var instance_explosion = pre_explosion.instantiate()
 		instance_explosion.global_position = global_position
+		instance_explosion.scale = scale
 		get_tree().root.call_deferred("add_child", instance_explosion)
 	queue_free()

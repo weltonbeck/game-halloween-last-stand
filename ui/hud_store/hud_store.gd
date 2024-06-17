@@ -27,13 +27,25 @@ func close() -> void:
 func update_prices() -> void:
 	if (PowerupManager):
 		var life_price = PowerupManager.get_price(PowerupManager.types.life)
-		$TextureButtonLife/RichTextLabelPrice.text = "[center]" + str(life_price) + "[/center]"
+		if (PowerupManager.get_value(PowerupManager.types.life) >= PowerupManager.max_level):
+			$TextureButtonLife.hide()
+		else:
+			$TextureButtonLife/RichTextLabelPrice.text = "[center]" + str(life_price) + "[/center]"
 		var power_price = PowerupManager.get_price(PowerupManager.types.power)
-		$TextureButtonPower/RichTextLabelPrice.text = "[center]" + str(power_price) + "[/center]"
+		if (PowerupManager.get_value(PowerupManager.types.power) >= PowerupManager.max_level):
+			$TextureButtonPower.hide()
+		else:
+			$TextureButtonPower/RichTextLabelPrice.text = "[center]" + str(power_price) + "[/center]"
 		var speed_price = PowerupManager.get_price(PowerupManager.types.speed)
-		$TextureButtonSpeed/RichTextLabelPrice.text = "[center]" + str(speed_price) + "[/center]"
+		if (PowerupManager.get_value(PowerupManager.types.speed) >= PowerupManager.max_level):
+			$TextureButtonSpeed.hide()
+		else:
+			$TextureButtonSpeed/RichTextLabelPrice.text = "[center]" + str(speed_price) + "[/center]"
 		var curse_price = PowerupManager.get_price(PowerupManager.types.curse)
-		$TextureButtonCurse/RichTextLabelPrice.text = "[center]" + str(curse_price) + "[/center]"
+		if (PowerupManager.get_value(PowerupManager.types.curse) >= PowerupManager.max_level):
+			$TextureButtonCurse.hide()
+		else:
+			$TextureButtonCurse/RichTextLabelPrice.text = "[center]" + str(curse_price) + "[/center]"
 	
 func power_up(type: PowerupManager.types) -> void:
 	if (PowerupManager && InventoryManager):

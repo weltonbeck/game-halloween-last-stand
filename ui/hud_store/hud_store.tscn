@@ -33,8 +33,8 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -50.0
 offset_top = 56.0
-offset_right = 50.0
-offset_bottom = 89.0
+offset_right = 56.0
+offset_bottom = 96.0
 grow_horizontal = 2
 texture = ExtResource("1_r2wxf")
 region_rect = Rect2(0, 0, 48, 32)
@@ -50,16 +50,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -13.5
-offset_right = 41.0
-offset_bottom = 11.5
+offset_left = -44.0
+offset_top = -14.0
+offset_right = 44.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.380392, 0.223529, 0.231373, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 32
-text = "MARKET"
+bbcode_enabled = true
+text = "[center]MARKET[/center]"
 
 [node name="TextureButtonLife" type="TextureButton" parent="."]
 anchors_preset = 8
@@ -79,15 +80,15 @@ texture_hover = ExtResource("4_618so")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonLife"]
 layout_mode = 0
-offset_left = 18.0
 offset_top = 7.0
-offset_right = 56.0
-offset_bottom = 24.0
+offset_right = 64.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 22
-text = "Life"
+bbcode_enabled = true
+text = "[center]Life[/center]"
 
 [node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonLife"]
 layout_mode = 0
@@ -120,15 +121,15 @@ texture_hover = ExtResource("4_2qx68")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonPower"]
 layout_mode = 0
-offset_left = 12.0
 offset_top = 8.0
-offset_right = 68.0
+offset_right = 64.0
 offset_bottom = 32.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 22
-text = "Power"
+bbcode_enabled = true
+text = "[center]Power[/center]"
 
 [node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonPower"]
 layout_mode = 0
@@ -162,15 +163,15 @@ texture_hover = ExtResource("8_o3oxx")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonSpeed"]
 layout_mode = 0
-offset_left = 11.0
 offset_top = 8.0
-offset_right = 60.0
+offset_right = 64.0
 offset_bottom = 32.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 22
-text = "Speed"
+bbcode_enabled = true
+text = "[center]Speed[/center]"
 
 [node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonSpeed"]
 layout_mode = 0
@@ -204,15 +205,15 @@ texture_hover = ExtResource("10_te1kl")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButtonCurse"]
 layout_mode = 0
-offset_left = 11.0
 offset_top = 8.0
-offset_right = 60.0
+offset_right = 64.0
 offset_bottom = 32.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.160784, 0.196078, 0.407843, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 22
-text = "Curse
+bbcode_enabled = true
+text = "[center]Curse[/center]
 "
 
 [node name="RichTextLabelPrice" type="RichTextLabel" parent="TextureButtonCurse"]

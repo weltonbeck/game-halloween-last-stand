@@ -34,7 +34,7 @@ func _process(delta: float):
 		var creature_scene = creatures[index]
 		var creature = creature_scene.instantiate()
 		creature.global_position = point
-		get_parent().add_child(creature)
+		get_parent().get_parent().add_child(creature)
 
 func get_point() -> Vector2:
 	path_follow_2d.progress_ratio = randf()
