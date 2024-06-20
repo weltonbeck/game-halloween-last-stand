@@ -15,6 +15,14 @@ var powerups:Dictionary = {
 	types.curse: 0
 }
 
+func clear_all() -> void:
+	powerups = {
+		types.life: 0,
+		types.power: 0,
+		types.speed: 0,
+		types.curse: 0
+	}
+
 func get_value(type: types) -> int:
 	return powerups[type]
 

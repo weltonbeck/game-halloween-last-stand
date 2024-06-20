@@ -2,11 +2,17 @@ extends Node2D
 
 @onready var transition = $UiTransition
 var player:Player
+var wave = 0
+var monster_died = 0
 
 func set_player(tmp:Player) -> void:
 	player = tmp
 
 func start_game() -> void:
+	wave = 0
+	monster_died = 0
+	InventoryManager.clear_all()
+	PowerupManager.clear_all()
 	await change_scene("res://scenes/game_scene.tscn")
 
 func change_scene(new_scene: String) -> void:

@@ -143,4 +143,5 @@ item_1/drop_chances = 10
 position = Vector2(-0.25, 14)
 scale = Vector2(0.78125, 0.5)
 
+[connection signal="die" from="HealthComponent" to="." method="_on_health_component_die"]
 [connection signal="take_damage" from="HealthComponent" to="." method="_on_health_component_take_damage"]

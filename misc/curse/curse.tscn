@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://dds1eflfd8alf"]
+
+[ext_resource type="Script" path="res://misc/curse/curse.gd" id="1_dqd5c"]
+[ext_resource type="Texture2D" uid="uid://driyg6unp1dtb" path="res://misc/curse/curse.png" id="1_igsfn"]
+[ext_resource type="Script" path="res://components/detections/damage_box_component.gd" id="2_vegxv"]
+
+[sub_resource type="Animation" id="Animation_cjmba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8phs5"]
+resource_name = "show"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_wn6h3"]
+resource_name = "hide"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_kyfy3"]
+resource_name = "default"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjokj"]
+_data = {
+"RESET": SubResource("Animation_cjmba"),
+"default": SubResource("Animation_kyfy3"),
+"hide": SubResource("Animation_wn6h3"),
+"show": SubResource("Animation_8phs5")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhh5o"]
+radius = 44.0
+height = 122.0
+
+[node name="Curse" type="Node2D"]
+script = ExtResource("1_dqd5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(0, 16)
+texture = ExtResource("1_igsfn")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wjokj")
+}
+autoplay = "default"
+
+[node name="DamageBoxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_vegxv")
+active_damage = false
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBoxComponent"]
+position = Vector2(-1, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mhh5o")
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="HiddenTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ShowTimer" to="." method="show_curse"]
+[connection signal="timeout" from="HiddenTimer" to="." method="hide_curse"]

@@ -20,3 +20,8 @@ func _on_health_component_take_damage(_amount: int) -> void:
 		movement_component.is_active = false
 		await get_tree().create_timer(0.3).timeout
 		movement_component.is_active = true
+
+
+func _on_health_component_die() -> void:
+	if (GameManager):
+		GameManager.monster_died += 1

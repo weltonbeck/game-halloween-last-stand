@@ -1,22 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://4qm8j0lflr6a"]
+[gd_scene load_steps=5 format=3 uid="uid://4qm8j0lflr6a"]
 
 [ext_resource type="Script" path="res://ui/hud_title_game/hud_title_game.gd" id="1_g8s3a"]
+[ext_resource type="Texture2D" uid="uid://bsr0abbcpqutp" path="res://ui/hud_store/wodden_arrow.png" id="2_3sc5v"]
+[ext_resource type="Texture2D" uid="uid://c7tmfjexrxtve" path="res://ui/hud_store/wodden_arrow_hover.png" id="3_adrc8"]
+[ext_resource type="FontFile" uid="uid://cm2yuilwqjaei" path="res://font/Kenney Pixel.ttf" id="4_hbmyl"]
 
 [node name="HudTitleGame" type="CanvasLayer"]
 script = ExtResource("1_g8s3a")
 
-[node name="StartGameButton" type="Button" parent="."]
+[node name="TextureButton" type="TextureButton" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -56.0
+offset_top = -20.0
+offset_right = 56.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start Game"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_3sc5v")
+texture_hover = ExtResource("3_adrc8")
+stretch_mode = 4
 
-[connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -7.0
+offset_right = 44.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("4_hbmyl")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Start Game[/center]"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_start_game_button_pressed"]

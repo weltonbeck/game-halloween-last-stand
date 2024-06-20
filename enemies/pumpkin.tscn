@@ -231,4 +231,5 @@ tree_root = SubResource("AnimationNodeStateMachine_hojnw")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Walk/blend_position = Vector2(-0.00396299, 0.98893)
 
+[connection signal="die" from="HealthComponent" to="." method="_on_health_component_die"]
 [connection signal="take_damage" from="HealthComponent" to="." method="_on_health_component_take_damage"]

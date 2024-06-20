@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c7gsbegdxii8h"]
+[gd_scene load_steps=37 format=3 uid="uid://c7gsbegdxii8h"]
 
 [ext_resource type="PackedScene" uid="uid://cfhr6q7yvly0r" path="res://player/player_staff.tscn" id="1_aho7j"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_cuhy1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://components/effects/blink_when_get_damage_component.gd" id="9_0baky"]
 [ext_resource type="PackedScene" uid="uid://dg8iyvp133ss3" path="res://components/movements/rotate_target_and_follow_mouse_component.tscn" id="10_1e23t"]
 [ext_resource type="PackedScene" uid="uid://3dx5yvw1dnij" path="res://components/detections/collector_magnetic_aura_box_component.tscn" id="12_4knvl"]
+[ext_resource type="PackedScene" uid="uid://dds1eflfd8alf" path="res://misc/curse/curse.tscn" id="14_f2isb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iack1"]
 radius = 6.0
@@ -272,7 +273,7 @@ bullet = ExtResource("7_3bfyn")
 position = Vector2(0, 3)
 script = ExtResource("9_0baky")
 health_component = NodePath("../HealthComponent")
-target = NodePath("..")
+target = NodePath("../Sprite2D")
 
 [node name="PlayerStaff" parent="." node_paths=PackedStringArray("player", "attackComponent") instance=ExtResource("1_aho7j")]
 position = Vector2(21, 8)
@@ -309,3 +310,5 @@ collision_mask = 16
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_24rgh")
 debug_color = Color(0.960784, 0.898039, 0.803922, 0.419608)
+
+[node name="Curse" parent="." instance=ExtResource("14_f2isb")]

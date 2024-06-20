@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bt6nk1ot1siyo"]
+[gd_scene load_steps=25 format=3 uid="uid://bt6nk1ot1siyo"]
 
 [ext_resource type="Script" path="res://enemies/bat.gd" id="1_dejal"]
 [ext_resource type="Texture2D" uid="uid://bmv53s44ylpgb" path="res://enemies/bat.png" id="2_2d31c"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="10_701si"]
 [ext_resource type="PackedScene" uid="uid://bct35kbuad7t" path="res://components/detections/damage_box_component.tscn" id="11_t2t5e"]
 [ext_resource type="PackedScene" uid="uid://bpyuxlq67nvh2" path="res://components/drop_items.tscn" id="12_xfp2q"]
-[ext_resource type="PackedScene" uid="uid://d1l4xel5bulie" path="res://misc/collectables/coin.tscn" id="13_uo7cn"]
 [ext_resource type="PackedScene" uid="uid://o35drjarw5m3" path="res://misc/collectables/bag_coin.tscn" id="14_ped26"]
 [ext_resource type="PackedScene" uid="uid://cdmh7rpwb44l4" path="res://misc/shadow/shadow.tscn" id="15_gc0ju"]
 
@@ -159,14 +158,13 @@ debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
 [node name="DropItens" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("12_xfp2q")]
 health_component = NodePath("../HealthComponent")
 target = NodePath("..")
-item_count = 2
-item_0/item = ExtResource("13_uo7cn")
+item_count = 1
+item_0/item = ExtResource("14_ped26")
 item_0/drop_chances = 60
-item_1/item = ExtResource("14_ped26")
-item_1/drop_chances = 10
 
 [node name="Shadow" parent="." instance=ExtResource("15_gc0ju")]
 position = Vector2(-0.25, 14)
 scale = Vector2(0.78125, 0.5)
 
+[connection signal="die" from="HealthComponent" to="." method="_on_health_component_die"]
 [connection signal="take_damage" from="HealthComponent" to="." method="_on_health_component_take_damage"]
