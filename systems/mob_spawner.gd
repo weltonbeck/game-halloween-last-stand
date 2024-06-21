@@ -17,7 +17,7 @@ func _process(delta: float):
 		if cooldown > 0: return
 		
 		# Frequência
-		var interval = 60.0 / mobs_per_minute
+		var interval = 60.0 / (mobs_per_minute + (GameManager.wave * 2))
 		cooldown = interval
 		
 		# Checar se o ponto é válido
@@ -30,7 +30,14 @@ func _process(delta: float):
 		if not result.is_empty(): return
 		
 		# Instanciar uma criatura aleatória
-		var index = randi_range(0, creatures.size() - 1)
+		var creatures_limit = creatures.size() - 1
+		
+		if (GameManager.wave <= 1):
+			creatures_limit = 0
+		elif (GameManager.wave <= 6):
+			creatures_limit = 1
+			
+		var index = randi_range(0, creatures_limit)
 		var creature_scene = creatures[index]
 		var creature = creature_scene.instantiate()
 		creature.global_position = point

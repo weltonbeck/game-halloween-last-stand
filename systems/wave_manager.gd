@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
 func play() -> void:
 	if (mob_spawner):
 		curent_wave += 1
+		if (GameManager):
+			GameManager.wave = curent_wave
 		$Timer.wait_time = wave_time_in_seconds
 		is_active = true
 		mob_spawner.is_active = true

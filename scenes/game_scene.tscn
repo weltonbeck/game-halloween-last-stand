@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpfssddtknse3"]
+[gd_scene load_steps=16 format=3 uid="uid://dpfssddtknse3"]
 
 [ext_resource type="PackedScene" uid="uid://bpetf3sohlhuu" path="res://ui/hud_life_progress/hud_player_life.tscn" id="1_gj1n2"]
 [ext_resource type="PackedScene" uid="uid://db26ohqil3u7b" path="res://ui/hud_wave_timer/hud_wave_timer.tscn" id="2_ngapg"]
 [ext_resource type="PackedScene" uid="uid://ddfx835iil75p" path="res://ui/hud_store/hud_store.tscn" id="3_q0spe"]
 [ext_resource type="PackedScene" uid="uid://cqqk8p77nusfq" path="res://ui/hud_coins/hud_coins.tscn" id="4_i45qw"]
+[ext_resource type="PackedScene" uid="uid://dfwcyl0faxg6w" path="res://ui/hud_gameover/hud_gameover.tscn" id="4_qqkux"]
 [ext_resource type="PackedScene" uid="uid://c7gsbegdxii8h" path="res://player/player.tscn" id="5_xm6qp"]
 [ext_resource type="PackedScene" uid="uid://ce34kwoputs6r" path="res://misc/trees/pine.tscn" id="6_s8qqt"]
 [ext_resource type="PackedScene" uid="uid://vbbsw7gg4v7t" path="res://misc/trees/dry_tree.tscn" id="7_4qth5"]
@@ -12,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cjj27jk6lm5p" path="res://systems/mob_spawner.tscn" id="10_tu41j"]
 [ext_resource type="PackedScene" uid="uid://dpxpnfa7tw6la" path="res://enemies/bat.tscn" id="11_10alx"]
 [ext_resource type="PackedScene" uid="uid://tseuugmpt5ea" path="res://enemies/pumpkin.tscn" id="12_mx2cw"]
-[ext_resource type="PackedScene" uid="uid://bt6nk1ot1siyo" path="res://enemies/red_bat.tscn" id="13_1q8cd"]
+[ext_resource type="PackedScene" uid="uid://bt6nk1ot1siyo" path="res://enemies/red_bat.tscn" id="14_q0515"]
 
 [sub_resource type="Curve2D" id="Curve2D_h8scn"]
 _data = {
@@ -34,6 +35,10 @@ wave_manager = NodePath("../../Systems/WaveManager")
 
 [node name="HudStore" parent="Hud" instance=ExtResource("3_q0spe")]
 visible = false
+
+[node name="HudGameover" parent="Hud" node_paths=PackedStringArray("player") instance=ExtResource("4_qqkux")]
+visible = false
+player = NodePath("../../Player")
 
 [node name="HudCoins" parent="Hud" instance=ExtResource("4_i45qw")]
 
@@ -99,13 +104,13 @@ layer_3/tile_data = PackedInt32Array(458744, 0, 0, 524280, 65536, 1, 589816, 655
 [node name="Systems" type="Node2D" parent="."]
 
 [node name="WaveManager" parent="Systems" node_paths=PackedStringArray("mob_spawner", "store") instance=ExtResource("9_f1m0q")]
-wave_time_in_seconds = 60
+wave_time_in_seconds = 50
 mob_spawner = NodePath("../MobSpawner")
 store = NodePath("../../Hud/HudStore")
 
 [node name="MobSpawner" parent="Systems" node_paths=PackedStringArray("path_follow_2d") instance=ExtResource("10_tu41j")]
-creatures = Array[PackedScene]([ExtResource("11_10alx"), ExtResource("12_mx2cw"), ExtResource("13_1q8cd")])
-mobs_per_minute = 50.0
+creatures = Array[PackedScene]([ExtResource("11_10alx"), ExtResource("12_mx2cw"), ExtResource("14_q0515")])
+mobs_per_minute = 40.0
 path_follow_2d = NodePath("Path2D/PathFollow2D")
 
 [node name="Path2D" type="Path2D" parent="Systems/MobSpawner"]

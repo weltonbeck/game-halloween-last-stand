@@ -7,7 +7,10 @@ var monster_died = 0
 
 func set_player(tmp:Player) -> void:
 	player = tmp
-
+	
+func title_game()-> void:
+	await change_scene("res://scenes/title_game.tscn")
+	
 func start_game() -> void:
 	wave = 0
 	monster_died = 0

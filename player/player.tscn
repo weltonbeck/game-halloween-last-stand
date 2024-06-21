@@ -312,3 +312,5 @@ shape = SubResource("CircleShape2D_24rgh")
 debug_color = Color(0.960784, 0.898039, 0.803922, 0.419608)
 
 [node name="Curse" parent="." instance=ExtResource("14_f2isb")]
+
+[connection signal="die" from="HealthComponent" to="." method="_on_health_component_die"]

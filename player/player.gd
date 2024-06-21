@@ -27,7 +27,7 @@ func powerup(type: PowerupManager.types) -> void:
 			$HealthComponent.recover($HealthComponent.max_health)
 		if (type == PowerupManager.types.speed):
 			var speed_level = PowerupManager.get_value(PowerupManager.types.speed)
-			$MovementComponent.speed = 50 + (10 * speed_level)
+			$MovementComponent.speed = 60 + (10 * speed_level)
 			$AttackShootingComponent.reload_time = 1.5 - (0.1 * speed_level)
 
 func _physics_process(_delta: float) -> void:
@@ -47,3 +47,8 @@ func flip_sprite() -> void:
 			sprite.flip_h = true
 		elif (input.input_vector.x > 0):
 			sprite.flip_h = false
+
+
+func _on_health_component_die() -> void:
+	GameManager.set_player(null)
+	queue_free()

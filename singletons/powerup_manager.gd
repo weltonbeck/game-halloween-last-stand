@@ -1,7 +1,7 @@
 extends Node
 
-var default_price = 30
-var price_factor = 3
+var default_price = 20
+var price_factor = 2
 var max_level = 10
 
 enum types { life,power,speed,curse }

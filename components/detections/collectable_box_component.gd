@@ -13,6 +13,9 @@ signal was_collected()
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	set_deferred("monitoring", false)
+	await get_tree().create_timer(0.5).timeout
+	set_deferred("monitoring", true)
 
 func aura_area_entered() -> void:
 	if (use_magnetic_aura && target):
