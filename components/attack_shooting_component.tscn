@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ler4fjt2kf6k"]
+[gd_scene load_steps=3 format=3 uid="uid://ler4fjt2kf6k"]
 
 [ext_resource type="Script" path="res://components/attack_shooting_component.gd" id="1_a4f4e"]
+[ext_resource type="AudioStream" uid="uid://oksk0xkslmvb" path="res://player/slash.mp3" id="2_fk2yx"]
 
 [node name="AttackShooting" type="Node2D"]
 script = ExtResource("1_a4f4e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fk2yx")
+bus = &"efects"

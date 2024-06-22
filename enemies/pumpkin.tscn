@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_mg4nq"]
 [ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="3_80mji"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="4_br10q"]
-[ext_resource type="Script" path="res://components/detections/hit_box_component.gd" id="5_l1nly"]
+[ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hit_box_component.tscn" id="6_8c13a"]
 [ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="6_vbwov"]
 [ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="7_6t6iv"]
 [ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="8_fwsnv"]
@@ -166,14 +166,13 @@ position = Vector2(0, -1)
 script = ExtResource("4_br10q")
 max_health = 15
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-position = Vector2(0, -1)
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_8c13a")]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("5_l1nly")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_im5y2")
 debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 
@@ -224,9 +223,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_f8ih0")
-}
 tree_root = SubResource("AnimationNodeStateMachine_hojnw")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Walk/blend_position = Vector2(-0.00396299, 0.98893)

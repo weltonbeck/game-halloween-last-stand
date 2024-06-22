@@ -34,7 +34,7 @@ func _process(delta: float):
 		
 		if (GameManager.wave <= 1):
 			creatures_limit = 0
-		elif (GameManager.wave <= 6):
+		elif (GameManager.wave <= 5):
 			creatures_limit = 1
 			
 		var index = randi_range(0, creatures_limit)

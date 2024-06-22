@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkf6ikarih12l"]
+[gd_scene load_steps=5 format=3 uid="uid://bkf6ikarih12l"]
 
 [ext_resource type="Script" path="res://components/detections/collectable_box_component.gd" id="1_36ha1"]
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_durfy"]
 [ext_resource type="Script" path="res://components/inputs/follow_player_input_component.gd" id="3_bjyvi"]
+[ext_resource type="AudioStream" uid="uid://cqkafuqsrt4r7" path="res://components/detections/coleta.wav" id="4_v0ktf"]
 
 [node name="CollectableBoxComponent" type="Area2D"]
 script = ExtResource("1_36ha1")
@@ -14,3 +15,7 @@ input = NodePath("../FollowPlayerInputComponent")
 
 [node name="FollowPlayerInputComponent" type="Node2D" parent="."]
 script = ExtResource("3_bjyvi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v0ktf")
+bus = &"efects"

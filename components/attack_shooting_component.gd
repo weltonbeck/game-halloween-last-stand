@@ -19,6 +19,7 @@ func _process(_delta) -> void:
 
 func shoot() -> void:
 	if (can_shoot):
+		$AudioStreamPlayer.play()
 		can_shoot = false
 		is_attacking.emit()
 		var instance_bullet = bullet.instantiate()

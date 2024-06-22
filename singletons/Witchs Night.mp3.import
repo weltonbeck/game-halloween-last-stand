@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4axc2plw4nuq"
+path="res://.godot/imported/Witchs Night.mp3-665f8bac6b028d540bd2b66f5530fab0.mp3str"
+
+[deps]
+
+source_file="res://singletons/Witchs Night.mp3"
+dest_files=["res://.godot/imported/Witchs Night.mp3-665f8bac6b028d540bd2b66f5530fab0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

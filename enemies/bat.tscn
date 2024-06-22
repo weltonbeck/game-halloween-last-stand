@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="2_bju4p"]
 [ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="3_vg5ry"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="3_x4wfe"]
-[ext_resource type="Script" path="res://components/detections/hit_box_component.gd" id="4_1a4b3"]
+[ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hit_box_component.tscn" id="6_1ujy8"]
 [ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="6_x4688"]
 [ext_resource type="PackedScene" uid="uid://drlgb33doy58i" path="res://components/effects/blink_when_get_damage_component.tscn" id="7_7h236"]
 [ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="7_25qrl"]
@@ -89,15 +89,14 @@ position = Vector2(0, 3)
 script = ExtResource("3_x4wfe")
 max_health = 6
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-position = Vector2(0, 17)
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_1ujy8")]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("4_1a4b3")
+monitoring = true
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -18)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_im5y2")
 debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 

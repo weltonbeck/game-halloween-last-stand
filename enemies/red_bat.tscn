@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bmv53s44ylpgb" path="res://enemies/bat.png" id="2_2d31c"]
 [ext_resource type="Script" path="res://components/movements/movement_component.gd" id="3_6tmg8"]
 [ext_resource type="PackedScene" uid="uid://bj06d8x662u44" path="res://components/inputs/follow_player_input_component.tscn" id="4_7f50r"]
-[ext_resource type="Script" path="res://components/health_component.gd" id="5_saf8j"]
-[ext_resource type="Script" path="res://components/detections/hit_box_component.gd" id="6_v87ho"]
+[ext_resource type="PackedScene" uid="uid://cofgm0wdeiy7f" path="res://components/health_component.tscn" id="5_nvk8f"]
+[ext_resource type="PackedScene" uid="uid://b885o33noq7q8" path="res://components/detections/hit_box_component.tscn" id="6_wouji"]
 [ext_resource type="PackedScene" uid="uid://bbmy4og7ju16i" path="res://components/effects/destroy_when_die_component.tscn" id="7_1p82a"]
 [ext_resource type="PackedScene" uid="uid://ddwry44o1c2a2" path="res://components/effects/show_damage_digit_when_get_damage_component.tscn" id="8_by4mt"]
 [ext_resource type="PackedScene" uid="uid://ddw218ya8rhsk" path="res://components/effects/life_bar_component.tscn" id="9_ukj3l"]
@@ -79,7 +79,7 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_mux7y"]
 radius = 8.0
 
-[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "input", "movement_component")]
+[node name="RedBat" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "input", "movement_component")]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
@@ -109,20 +109,17 @@ input = NodePath("../FollowPlayerInputComponent")
 [node name="FollowPlayerInputComponent" parent="." instance=ExtResource("4_7f50r")]
 position = Vector2(0, 3)
 
-[node name="HealthComponent" type="Node2D" parent="."]
-position = Vector2(0, 3)
-script = ExtResource("5_saf8j")
+[node name="HealthComponent" parent="." instance=ExtResource("5_nvk8f")]
 max_health = 35
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-position = Vector2(0, 17)
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_wouji")]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("6_v87ho")
+monitoring = true
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -18)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_im5y2")
 debug_color = Color(0.840399, 0.25419, 0.342337, 0.42)
 
@@ -155,8 +152,7 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_mux7y")
 debug_color = Color(0.772549, 0.443137, 0.0431373, 0.419608)
 
-[node name="DropItens" parent="." node_paths=PackedStringArray("health_component", "target") instance=ExtResource("12_xfp2q")]
-health_component = NodePath("../HealthComponent")
+[node name="DropItens" parent="." node_paths=PackedStringArray("target") instance=ExtResource("12_xfp2q")]
 target = NodePath("..")
 item_count = 1
 item_0/item = ExtResource("14_ped26")

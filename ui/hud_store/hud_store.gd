@@ -52,9 +52,12 @@ func power_up(type: PowerupManager.types) -> void:
 		var coins = InventoryManager.get_item_quantity("Coin")
 		var price = PowerupManager.get_price(type)
 		if (coins >= price):
+			$SuccessAudioStreamPlayer.play()
 			InventoryManager.remove_item("Coin", price)
 			PowerupManager.increase(type)
 			update_prices()
+		else:
+			$ErrorAudioStreamPlayer.play()
 	
 func _on_texture_button_next_pressed() -> void:
 	close()

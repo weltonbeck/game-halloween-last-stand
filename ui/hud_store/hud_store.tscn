@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddfx835iil75p"]
+[gd_scene load_steps=17 format=3 uid="uid://ddfx835iil75p"]
 
 [ext_resource type="Script" path="res://ui/hud_store/hud_store.gd" id="1_jqikf"]
 [ext_resource type="Texture2D" uid="uid://dhvu7xnqs60nk" path="res://systems/hud_paper.png" id="1_r2wxf"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://djqqarntdo8n6" path="res://ui/hud_store/wood_stick.png" id="12_20fr0"]
 [ext_resource type="Texture2D" uid="uid://bsr0abbcpqutp" path="res://ui/hud_store/wodden_arrow.png" id="12_yimuf"]
 [ext_resource type="Texture2D" uid="uid://c7tmfjexrxtve" path="res://ui/hud_store/wodden_arrow_hover.png" id="14_370vb"]
+[ext_resource type="AudioStream" uid="uid://wcddevc41wqf" path="res://ui/hud_store/success.mp3" id="15_fu2qw"]
+[ext_resource type="AudioStream" uid="uid://djsyl8tpapdxb" path="res://ui/hud_store/error.mp3" id="16_7d7gj"]
 
 [node name="HudStore" type="CanvasLayer"]
 process_mode = 3
@@ -269,6 +271,16 @@ theme_override_colors/default_color = Color(0.756863, 0.85098, 0.94902, 1)
 theme_override_fonts/normal_font = ExtResource("2_dqcmc")
 theme_override_font_sizes/normal_font_size = 24
 text = "N E X T"
+
+[node name="SuccessAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_fu2qw")
+bus = &"efects"
+
+[node name="ErrorAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_7d7gj")
+volume_db = 9.0
+pitch_scale = 0.8
+bus = &"efects"
 
 [connection signal="pressed" from="TextureButtonLife" to="." method="_on_texture_button_life_pressed"]
 [connection signal="pressed" from="TextureButtonPower" to="." method="_on_texture_button_power_pressed"]

@@ -6,6 +6,7 @@ extends Area2D
 @export var imortality_after_damage: float = 0
 
 func set_damage(amount:int) -> void:
+	$AudioStreamPlayer.play()
 	if (health_component):
 		health_component.damage(amount)
 		

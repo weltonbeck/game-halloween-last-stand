@@ -24,8 +24,10 @@ func aura_area_entered() -> void:
 
 func _on_area_entered(_area:Area2D) -> void:
 	if (InventoryManager && item_name):
+		$AudioStreamPlayer.play()
 		was_collected.emit()
 		InventoryManager.add_item(item_name, item_quantity)
 		
 		if (destroy_target && target):
+			await $AudioStreamPlayer.finished
 			target.queue_free()
